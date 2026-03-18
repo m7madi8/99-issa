@@ -1,6 +1,6 @@
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
-import { media } from '../data/pageContent';
+import { brandMotto, media } from '../data/pageContent';
 
 const membershipBenefits = [
   {
@@ -40,6 +40,9 @@ function MembershipHeader() {
           <ScrollReveal as="p" baseOpacity={0.28} baseRotation={0.24} blurStrength={0.9} scrub={1.25} containerClassName="page-hero__body">
             Calm rewards. Clean benefits. A premium rhythm that keeps guests returning.
           </ScrollReveal>
+          <p className="page-motto" aria-label="Brand motto">
+            {brandMotto}
+          </p>
 
           <div className="page-hero__actions">
             <Button href="#membership-benefits" variant="primary">

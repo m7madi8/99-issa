@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
 import StaggeredMenu from './StaggeredMenu';
-import { featureCards, media, menuAdditions, storyPoints } from '../data/pageContent';
+import { brandMotto, featureCards, media, menuAdditions, storyPoints } from '../data/pageContent';
 
 function ContentSection({
   id,
@@ -45,6 +45,9 @@ function ContentSection({
             </ScrollReveal>
             <ScrollReveal as="p" baseOpacity={0.32} baseRotation={0.6} blurStrength={1.5} scrub={1.45} containerClassName="editorial-section__reveal">
               {body}
+            </ScrollReveal>
+            <ScrollReveal as="p" baseOpacity={0.22} baseRotation={0.2} blurStrength={0.7} scrub={1.15} containerClassName="brand-motto__reveal">
+              {brandMotto}
             </ScrollReveal>
             {children}
             <Button href={buttonHref} variant={buttonVariant} className={buttonClassName}>
@@ -106,6 +109,9 @@ export function HeroSection() {
           </h1>
           <p className="hero__description">
             Proven system. Real support. Growth-ready markets. Your next move starts here.
+          </p>
+          <p className="hero__motto" aria-label="Brand motto">
+            {brandMotto}
           </p>
 
           <div className="hero__actions">
@@ -253,7 +259,11 @@ export function FooterSection() {
               <a href="#top" className="footer__mark" aria-label="Go to top">
                 <img src={media.logoPrimary} alt="" aria-hidden="true" />
               </a>
-              <p>Clear brand. Calm presentation. Built to feel trustworthy and refined.</p>
+              <p>
+                Clear brand. Calm presentation. Built to feel trustworthy and refined.
+                <br />
+                <span className="footer__motto">{brandMotto}</span>
+              </p>
             </div>
 
             <nav className="footer__nav" aria-label="Footer navigation">

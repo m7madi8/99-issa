@@ -1,6 +1,6 @@
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
-import { media } from '../data/pageContent';
+import { brandMotto, media } from '../data/pageContent';
 
 const joinUrl = 'https://pub2.pskt.io/t/fkbdcn';
 const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(joinUrl)}`;
@@ -45,6 +45,10 @@ function RewardsHeader() {
           >
             Scan the QR Code to become a member and unlock exclusive deals.
           </ScrollReveal>
+
+          <p className="page-motto" aria-label="Brand motto">
+            {brandMotto}
+          </p>
         </div>
       </Container>
     </header>

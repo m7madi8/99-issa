@@ -1,6 +1,6 @@
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
-import { media } from '../data/pageContent';
+import { brandMotto, media } from '../data/pageContent';
 
 const franchiseHighlights = [
   {
@@ -41,6 +41,9 @@ function FranchiseHeader() {
             This page is dedicated to franchise visitors only. It keeps the story simple, the layout calm,
             and the business message easy to understand.
           </ScrollReveal>
+          <p className="page-motto" aria-label="Brand motto">
+            {brandMotto}
+          </p>
 
           <div className="page-hero__actions">
             <Button href="#franchise-overview" variant="primary">

@@ -5,6 +5,8 @@ export const media = {
   heroVideo: '/img/99video.mp4',
 } as const;
 
+export const brandMotto = "IT'S MORE THEN A NUMBER" as const;
+
 export const featureCards = [
   {
     eyebrow: 'Franchise model',
