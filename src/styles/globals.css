@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
-  --bg: #f4f0ea;
-  --bg-alt: #fbf8f4;
+  --bg: #ffffff;
+  --bg-alt: #ffffff;
   --surface: rgba(255, 255, 255, 0.82);
   --surface-solid: #ffffff;
   --surface-dark: #111111;
@@ -295,7 +295,7 @@ button {
   overflow: hidden;
   isolation: isolate;
   transform: translateZ(0);
-  background: #fffaf4;
+  background: #ffffff;
   color: #1c1c1c;
 }
 
@@ -358,7 +358,7 @@ button {
 }
 
 .button--primary {
-  background: #fffaf4;
+  background: #ffffff;
   color: #b1111e;
   border-color: rgba(177, 15, 30, 0.28);
   --button-fill: #b1111e;
@@ -376,7 +376,7 @@ button {
 }
 
 .hero-ui-button--bordered.hero-ui-button--primary {
-  background: #fffaf4;
+  background: #ffffff;
   color: #b1111e;
   border-color: rgba(177, 15, 30, 0.28);
   --button-fill: #b1111e;
@@ -394,7 +394,7 @@ button {
 }
 
 .button--secondary {
-  background: #fffaf4;
+  background: #ffffff;
   color: #1f1f1f;
   border-color: rgba(17, 17, 17, 0.18);
   --button-fill: #1f1f1f;
@@ -412,7 +412,7 @@ button {
 }
 
 .button--ghost {
-  background: #fffaf4;
+  background: #ffffff;
   color: #7b4c35;
   border-color: rgba(123, 76, 53, 0.24);
   --button-fill: #7b4c35;
@@ -442,7 +442,7 @@ button {
 }
 
 .hero-ui-button--bordered {
-  background: #fffaf4;
+  background: #ffffff;
   color: #1c1c1c;
   border-color: rgba(17, 17, 17, 0.18);
   --button-fill: #1c1c1c;
@@ -460,7 +460,7 @@ button {
 }
 
 .hero-ui-button--default {
-  background: #fffaf4;
+  background: #ffffff;
   color: #1c1c1c;
   border-color: rgba(17, 17, 17, 0.16);
   --button-fill: #1c1c1c;
