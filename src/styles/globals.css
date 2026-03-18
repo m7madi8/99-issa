@@ -43,11 +43,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(225, 29, 46, 0.08), transparent 24%),
     radial-gradient(circle at top right, rgba(17, 17, 17, 0.05), transparent 18%),
@@ -95,6 +97,35 @@ button {
 
 .app-shell {
   overflow-x: clip;
+}
+
+.app-home {
+  padding-top: 100svh;
+}
+
+.app-home .hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  /* Keep hero pinned but allow sections below to visually cover it on scroll */
+  z-index: 1;
+}
+
+/* With the hero pinned, the first section must not pull upward. */
+.app-home .franchise-section {
+  margin-top: 0;
+}
+
+.app-home .franchise-section,
+.app-home .membership-section,
+.app-home .menu-section,
+.app-home .rewards-program-section,
+.app-home .footer-section {
+  position: relative;
+  z-index: 2;
 }
 
 .container {
@@ -260,6 +291,11 @@ button {
   line-height: 1.3;
   color: var(--accent);
   text-shadow: 0 12px 28px rgba(225, 29, 46, 0.16);
+}
+
+.hero .hero__motto {
+  color: #e11d2e;
+  text-shadow: 0 12px 28px rgba(225, 29, 46, 0.18);
 }
 
 .hero__actions {

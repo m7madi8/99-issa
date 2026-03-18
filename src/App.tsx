@@ -30,7 +30,7 @@ export default function App() {
   }
 
   return (
-    <main className="app-shell" id="top">
+    <main className="app-shell app-home" id="top">
       <HeroSection />
       <FranchiseSection />
       <MembershipSection />

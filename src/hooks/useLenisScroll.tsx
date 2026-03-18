@@ -21,6 +21,11 @@ export function useLenisScroll() {
       lerp: 0.1,
     } as never);
 
+    // Expose Lenis to other components (e.g. menu) for scroll locking.
+    (window as any).__lenis = lenis;
+    (window as any).__lenisStop = () => (lenis as any).stop?.();
+    (window as any).__lenisStart = () => (lenis as any).start?.();
+
     ScrollTrigger.scrollerProxy(window, {
       scrollTop(value) {
         if (arguments.length && typeof value === 'number') {
@@ -56,6 +61,9 @@ export function useLenisScroll() {
       window.removeEventListener('resize', handleResize);
       lenis.destroy();
       ScrollTrigger.clearScrollMemory();
+      delete (window as any).__lenis;
+      delete (window as any).__lenisStop;
+      delete (window as any).__lenisStart;
     };
   }, []);
 }

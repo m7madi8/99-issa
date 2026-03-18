@@ -183,6 +183,10 @@ export default function StaggeredMenu({
 
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
+
+    // If Lenis smooth scrolling is active, pause it to prevent background scroll.
+    // (Lenis keeps updating via RAF, so overflow hidden alone may not fully stop motion.)
+    (window as any).__lenisStop?.();
     if (scrollbarWidth > 0) {
       body.style.paddingRight = `${scrollbarWidth}px`;
     }
@@ -191,6 +195,8 @@ export default function StaggeredMenu({
       body.style.overflow = previousBodyOverflow;
       body.style.paddingRight = previousBodyPaddingRight;
       html.style.overflow = previousHtmlOverflow;
+
+      (window as any).__lenisStart?.();
     };
   }, [open]);
 
