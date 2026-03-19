@@ -3,6 +3,7 @@ export const media = {
   logoSecondary: '/img/99logo2.png',
   cafeMark: '/img/99cafe-logo2.png',
   heroVideo: '/img/99video.mp4',
+  membershipLogo: '/img/1.png',
 } as const;
 
 export const brandMotto = "IT'S MORE THEN A NUMBER" as const;

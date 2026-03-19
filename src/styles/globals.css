@@ -691,6 +691,26 @@ button {
   padding: 1rem 0 1rem;
 }
 
+/* 3D angled logo for the Membership section mark */
+.membership-section .editorial-section__mark img {
+  transform-origin: left center;
+  /* Professional, subtle 3D tilt (cinematic but not exaggerated) */
+  transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) rotateZ(-1deg) translateY(-2px) translateX(8px)
+    scale(1.02);
+  filter: drop-shadow(0 22px 34px rgba(225, 29, 46, 0.14)) saturate(1.02);
+  will-change: transform;
+}
+
+@media (max-width: 899px) {
+  .membership-section .editorial-section__mark img {
+    /* Center the mark on small screens (avoid horizontal drift) */
+    transform-origin: center center;
+    transform: perspective(800px) rotateY(-10deg) rotateX(7deg) rotateZ(-1deg) translateY(0) translateX(0)
+      scale(1.01);
+    filter: drop-shadow(0 18px 28px rgba(225, 29, 46, 0.12)) saturate(1.02);
+  }
+}
+
 .content-card {
   display: grid;
   gap: 1rem;

@@ -167,7 +167,7 @@ export function MembershipSection() {
       badge="Membership"
       title="Membership made simple."
       body="A warm loyalty experience with clear benefits."
-      logo={media.logoPrimary}
+      logo={media.membershipLogo}
       buttonLabel="Join +"
       buttonVariant="primary"
       buttonHref="/membership"
