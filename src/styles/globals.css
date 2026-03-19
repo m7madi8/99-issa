@@ -697,8 +697,24 @@ button {
   /* Professional, subtle 3D tilt (cinematic but not exaggerated) */
   transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) rotateZ(-1deg) translateY(-2px) translateX(8px)
     scale(1.02);
-  filter: drop-shadow(0 22px 34px rgba(225, 29, 46, 0.14)) saturate(1.02);
+  filter: drop-shadow(0 26px 42px rgba(225, 29, 46, 0.16)) saturate(1.03);
   will-change: transform;
+  animation: membershipLogo3dFloat 9.5s ease-in-out infinite;
+}
+
+@keyframes membershipLogo3dFloat {
+  0% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) rotateZ(-1deg) translateY(-2px) translateX(8px)
+      scale(1.02);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-10deg) rotateX(6deg) rotateZ(-1deg) translateY(5px) translateX(14px)
+      scale(1.03);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) rotateZ(-1deg) translateY(-2px) translateX(8px)
+      scale(1.02);
+  }
 }
 
 @media (max-width: 899px) {
@@ -707,7 +723,29 @@ button {
     transform-origin: center center;
     transform: perspective(800px) rotateY(-10deg) rotateX(7deg) rotateZ(-1deg) translateY(0) translateX(0)
       scale(1.01);
-    filter: drop-shadow(0 18px 28px rgba(225, 29, 46, 0.12)) saturate(1.02);
+    filter: drop-shadow(0 20px 30px rgba(225, 29, 46, 0.14)) saturate(1.03);
+    animation: membershipLogo3dFloatMobile 9.5s ease-in-out infinite;
+  }
+}
+
+@keyframes membershipLogo3dFloatMobile {
+  0% {
+    transform: perspective(800px) rotateY(-10deg) rotateX(7deg) rotateZ(-1deg) translateY(0) translateX(0)
+      scale(1.01);
+  }
+  50% {
+    transform: perspective(800px) rotateY(-5deg) rotateX(3.5deg) rotateZ(-1deg) translateY(3px) translateX(0)
+      scale(1.02);
+  }
+  100% {
+    transform: perspective(800px) rotateY(-10deg) rotateX(7deg) rotateZ(-1deg) translateY(0) translateX(0)
+      scale(1.01);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .membership-section .editorial-section__mark img {
+    animation: none;
   }
 }
 
