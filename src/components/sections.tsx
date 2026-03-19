@@ -116,7 +116,7 @@ export function HeroSection() {
 
           <div className="hero__actions">
             <Button href="/franchise" variant="primary">
-              Apply to own a 99
+              Apply to own a <span className="brand-red-number">99</span>
             </Button>
             <Button href="/membership" variant="secondary">
               See the opportunity
@@ -294,7 +294,9 @@ export function FooterSection() {
           </div>
 
           <div className="footer__bottom">
-            <span>© 2026 99 Cafe</span>
+            <span>
+              © 2026 <span className="brand-red-number">99</span> Cafe
+            </span>
             <span>Franchise, membership, menu, rewards</span>
           </div>
         </Panel>

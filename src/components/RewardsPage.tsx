@@ -1,6 +1,7 @@
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
 import { brandMotto, media } from '../data/pageContent';
+import type { ReactNode } from 'react';
 
 const joinUrl = 'https://pub2.pskt.io/t/fkbdcn';
 const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(joinUrl)}`;
@@ -22,7 +23,9 @@ function RewardsHeader() {
         </div>
 
         <div className="rewards-hero">
-          <Badge tone="light">99 Rewards</Badge>
+          <Badge tone="light">
+            <span className="brand-red-number">99</span> Rewards
+          </Badge>
 
           <ScrollReveal
             as="h1"
@@ -32,7 +35,7 @@ function RewardsHeader() {
             scrub={1.2}
             containerClassName="page-hero__title"
           >
-            Join 99 Rewards
+            Join <span className="brand-red-number">99</span> Rewards
           </ScrollReveal>
 
           <ScrollReveal
@@ -79,7 +82,7 @@ function JoinCard() {
 
             <div className="rewards-qr__cta">
               <Button href={joinUrl} variant="primary">
-                Register with 99 Rewards
+                Register with <span className="brand-red-number">99</span> Rewards
               </Button>
             </div>
 
@@ -93,7 +96,7 @@ function JoinCard() {
   );
 }
 
-function RewardsOffer({ title, items, footer }: { title: string; items: string[]; footer: string }) {
+function RewardsOffer({ title, items, footer }: { title: ReactNode; items: ReactNode[]; footer: ReactNode }) {
   return (
     <div className="rewards-offer">
       <ScrollReveal
@@ -107,9 +110,9 @@ function RewardsOffer({ title, items, footer }: { title: string; items: string[]
         {title}
       </ScrollReveal>
 
-      <ul className="rewards-offer__list" aria-label={`${title} details`}>
-        {items.map((line) => (
-          <li key={line}>{line}</li>
+      <ul className="rewards-offer__list" aria-label="Rewards offer details">
+        {items.map((line, idx) => (
+          <li key={idx}>{line}</li>
         ))}
       </ul>
 
@@ -124,9 +127,15 @@ function RewardsSchedule() {
       <Container>
         <div className="rewards-offers">
           <RewardsOffer
-            title="FRIDAY 99 SPECIAL"
+            title={
+              <>
+                FRIDAY <span className="brand-red-number">99</span> SPECIAL
+              </>
+            }
             items={[
-              '99 Minutes • 99¢ Drinks',
+              <>
+                <span className="brand-red-number">99</span> Minutes • <span className="brand-red-number">99</span>¢ Drinks
+              </>,
               '7:30 AM — 9:09 AM',
               '9 Selected Drinks',
               'Limit 1 Drink Per Guest',
@@ -136,13 +145,23 @@ function RewardsSchedule() {
           />
 
           <RewardsOffer
-            title="MIDWEEK 99"
+            title={
+              <>
+                MIDWEEK <span className="brand-red-number">99</span>
+              </>
+            }
             items={[
               'Buy Any Drink',
               'Get The Second One',
-              'Mini $0.99',
-              'Normal $1.99',
-              'Maxi $2.99',
+              <>
+                Mini $0.<span className="brand-red-number">99</span>
+              </>,
+              <>
+                Normal $1.<span className="brand-red-number">99</span>
+              </>,
+              <>
+                Maxi $2.<span className="brand-red-number">99</span>
+              </>,
               'Second drink must be equal or smaller size',
             ]}
             footer="⸻"
