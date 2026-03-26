@@ -73,13 +73,7 @@ function JoinCard() {
             <div className="rewards-join__note">No complicated steps. Just scan and go.</div>
           </Panel>
 
-          <Panel className="rewards-join__qr" aria-label="Join via QR code">
-            <img className="rewards-qr__img" src={qrSrc} alt="QR code for joining 99 Rewards" />
-            <div className="rewards-qr__meta">
-              <strong>Scan to join</strong>
-              <span>Opens your membership flow</span>
-            </div>
-
+          <Panel className="rewards-join__qr" aria-label="Join 99 Rewards">
             <div className="rewards-qr__cta">
               <Button href={joinUrl} variant="primary">
                 Register with <span className="brand-red-number">99</span> Rewards

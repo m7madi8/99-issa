@@ -28,8 +28,9 @@ export function useLenisScroll() {
 
     ScrollTrigger.scrollerProxy(window, {
       scrollTop(value) {
+        /* ScrollTrigger يضبط التمرير أثناء الـ pin — يجب أن يكون فورياً وإلا يتعطّل الـ scrub والـ pin مع Lenis */
         if (arguments.length && typeof value === 'number') {
-          lenis.scrollTo(value, { immediate: false });
+          lenis.scrollTo(value, { immediate: true });
         }
         return lenis.scroll;
       },

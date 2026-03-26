@@ -9,8 +9,9 @@ import {
 import FranchisePage from './components/FranchisePage';
 import MembershipPage from './components/MembershipPage';
 import RewardsPage from './components/RewardsPage';
+import MenuPage from './منيو/MenuPage';
 
-const getPathname = () => window.location.pathname.replace(/\/$/, '');
+const getPathname = () => decodeURI(window.location.pathname.replace(/\/$/, ''));
 
 export default function App() {
   if (typeof window !== 'undefined') {
@@ -26,6 +27,10 @@ export default function App() {
 
     if (pathname === '/rewards') {
       return <RewardsPage />;
+    }
+
+    if (pathname === '/menu' || pathname === '/منيو') {
+      return <MenuPage />;
     }
   }
 

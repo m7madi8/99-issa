@@ -69,7 +69,7 @@ const heroMenuItems = [
   { label: 'Franchise', ariaLabel: 'Open franchise page', link: '/franchise' },
   { label: 'Membership', ariaLabel: 'Open membership page', link: '/membership' },
   { label: 'Rewards Program', ariaLabel: 'Open rewards page', link: '/rewards' },
-  { label: 'Menu', ariaLabel: 'Go to menu section', link: '#menu' },
+  { label: 'Menu', ariaLabel: 'Open menu page', link: '/menu' },
 ];
 
 export function HeroSection() {
@@ -197,6 +197,7 @@ export function MenuSection() {
       buttonLabel="View menu +"
       buttonVariant="primary"
       badgeTone="light"
+      buttonHref="/menu"
       buttonClassName="content-card__button content-card__button--accent"
       meta="Menu"
     >
@@ -276,7 +277,7 @@ export function FooterSection() {
                   <a href="#membership">Membership</a>
                 </li>
                 <li>
-                  <a href="#menu">Menu</a>
+                  <a href="/menu">Menu</a>
                 </li>
                 <li>
                   <a href="/rewards">Rewards Program</a>

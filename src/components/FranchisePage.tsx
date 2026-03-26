@@ -88,11 +88,11 @@ function FranchiseOverview() {
             </Button>
           </div>
 
-          <Panel className="page-visual page-visual--light" aria-hidden="true">
+          <Panel className="page-visual page-visual--light franchise-visual" aria-hidden="true">
             <div className="page-visual__mark">
               <img src={media.logoPrimary} alt="" aria-hidden="true" />
             </div>
-            <div className="page-visual__panel">
+            <div className="page-visual__panel franchise-visual__panel">
               <div className="page-visual__row">
                 <span>Entry point</span>
                 <strong>Simple setup</strong>
