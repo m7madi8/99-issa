@@ -110,7 +110,7 @@ button {
 }
 
 .app-home {
-  padding-top: 100svh;
+  padding-top: 100dvh;
 }
 
 .app-home .hero {
@@ -118,8 +118,8 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100svh;
-  min-height: 100svh;
+  height: 100dvh;
+  min-height: 100dvh;
   /* Keep hero pinned but allow sections below to visually cover it on scroll */
   z-index: 1;
 }
@@ -150,8 +150,8 @@ button {
 .hero {
   position: sticky;
   top: 0;
-  min-height: 100svh;
-  padding: 1rem 0 2.5rem;
+  min-height: 100dvh;
+  padding: 1rem 0 calc(2.5rem + env(safe-area-inset-bottom, 0px));
   isolation: isolate;
 }
 
@@ -178,12 +178,13 @@ button {
 .hero__content {
   position: relative;
   z-index: 1;
-  min-height: calc(100svh - 3.5rem);
+  min-height: calc(100dvh - 3.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.25rem;
   padding-top: 0.75rem;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   color: #ffffff;
 }
 
