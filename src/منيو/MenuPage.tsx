@@ -1,59 +1,51 @@
-import { Badge, Container } from '../components/ui';
-import ScrollReveal from '../components/ScrollReveal';
-import HotDrinksSection from '../components/HotDrinksSection';
-import { brandMotto, media } from '../data/pageContent';
+import { useReducedMotion } from 'framer-motion';
+import { Container } from '../components/ui';
+import StaggeredMenu from '../components/StaggeredMenu';
+import { FullMenuBrowse, LuxuryMenuHero } from '../components/luxury-menu';
+import { media } from '../data/pageContent';
+
+/** Same sections as the home hero StaggeredMenu, adapted for the menu route. */
+const menuPageStaggeredItems = [
+  { label: 'HOME +', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'Franchise', ariaLabel: 'Open franchise page', link: '/franchise' },
+  { label: 'Membership', ariaLabel: 'Open membership page', link: '/membership' },
+  { label: 'Rewards Program', ariaLabel: 'Open rewards page', link: '/rewards' },
+  { label: 'Menu', ariaLabel: 'Top of menu page', link: '#top' },
+] as const;
 
 export default function MenuPage() {
+  const reduceMotion = useReducedMotion() ?? false;
+
   return (
-    <main className="app-shell page-route menu-page" id="top" lang="en" dir="ltr">
-      <header className="page-shell page-shell--light menu-page-shell menu-page-hero-only">
+    <main className="app-shell page-route page-route--menu bg-white" id="top" lang="en">
+      <header className="page-shell page-shell--light">
         <Container>
-          <div className="page-shell__bar menu-page-header-bar">
+          <div className="page-shell__bar">
             <a href="/" className="page-shell__brand" aria-label="Back to home">
               <img src={media.logoPrimary} alt="" aria-hidden="true" />
             </a>
-          </div>
 
-          <div className="menu-page-hero">
-            <Badge tone="light">
-             Menu
-            </Badge>
-
-            <ScrollReveal
-              as="h1"
-              baseOpacity={0.22}
-              baseRotation={0.32}
-              blurStrength={1.1}
-              scrub={1.2}
-              containerClassName="menu-page-hero__title"
-            >
-              <img
-                src={media.logoPrimary}
-                alt="99 Cafe"
-                className="menu-page-hero__logo-mark"
-              />
-            </ScrollReveal>
-
-            <ScrollReveal
-              as="p"
-              baseOpacity={0.26}
-              baseRotation={0.2}
-              blurStrength={0.85}
-              scrub={1.2}
-              containerClassName="menu-page-hero__body"
-            >
-              A curated selection, consistent quality in every location, and a calm presentation that reflects
-              the brand.
-            </ScrollReveal>
-
-            <p className="page-motto" aria-label="Brand motto">
-              {brandMotto}
-            </p>
+            <StaggeredMenu
+              className="hero__menu"
+              position="right"
+              items={[...menuPageStaggeredItems]}
+              socialItems={[]}
+              displaySocials={false}
+              displayItemNumbering
+              logoUrl={media.cafeMark}
+              menuButtonColor="#111111"
+              openMenuButtonColor="#111111"
+              accentColor="#e11d2e"
+              changeMenuColorOnOpen={false}
+              isFixed={false}
+            />
           </div>
         </Container>
       </header>
 
-      <HotDrinksSection />
+      <LuxuryMenuHero reduceMotion={reduceMotion} />
+
+      <FullMenuBrowse />
     </main>
   );
 }

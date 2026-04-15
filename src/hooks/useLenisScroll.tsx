@@ -5,6 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/** GSAP easing for Lenis scroll-to animations — soft stop, no harsh snap. */
+function createLenisScrollEase() {
+  const ease = gsap.parseEase('power3.out');
+  return (t: number) => ease(t);
+}
+
 export function useLenisScroll() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -16,9 +22,12 @@ export function useLenisScroll() {
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => 1 - Math.pow(1 - t, 3),
-      lerp: 0.1,
+      duration: 1.38,
+      easing: createLenisScrollEase(),
+      lerp: 0.072,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.12,
+      smoothWheel: true,
     } as never);
 
     // Expose Lenis to other components (e.g. menu) for scroll locking.
