@@ -5,7 +5,11 @@
     { "source": "/membership", "destination": "/" },
     { "source": "/membership/", "destination": "/" },
     { "source": "/rewards", "destination": "/" },
-    { "source": "/rewards/", "destination": "/" }
+    { "source": "/rewards/", "destination": "/" },
+    { "source": "/menu", "destination": "/" },
+    { "source": "/menu/", "destination": "/" },
+    { "source": "/منيو", "destination": "/" },
+    { "source": "/منيو/", "destination": "/" }
   ]
 }
 
