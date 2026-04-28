@@ -105,10 +105,10 @@ export function HeroSection() {
         <div className="hero__body">
           <Badge tone="dark">Franchise opportunity</Badge>
           <h1 className="hero__title">
-            Scale with a brand built to win.
+            Scale with confidence.
           </h1>
           <p className="hero__description">
-            Proven system. Real support. Growth-ready markets. Your next move starts here.
+            Proven system. Real support.
           </p>
           <p className="hero__motto" aria-label="Brand motto">
             {brandMotto}
@@ -119,13 +119,13 @@ export function HeroSection() {
               Apply to own a <span className="brand-red-number">99</span>
             </Button>
             <Button href="/membership" variant="secondary">
-              See the opportunity
+              Learn more
             </Button>
           </div>
         </div>
 
         <div className="hero__scroll" aria-hidden="true">
-          <span>Scroll to discover</span>
+          <span>Discover more</span>
           <span className="hero__scroll-arrow">↓</span>
         </div>
       </Container>
@@ -138,8 +138,8 @@ export function FranchiseSection() {
     <ContentSection
       id="franchise"
       badge="Franchise"
-      title="Franchise built to scale."
-      body="A clear model with premium standards and simple execution."
+      title="Built to scale."
+      body="Clear model. Clean execution."
       logo={media.logoPrimary}
       buttonLabel="Join +"
       buttonVariant="primary"
@@ -165,8 +165,8 @@ export function MembershipSection() {
     <ContentSection
       id="membership"
       badge="Membership"
-      title="Membership made simple."
-      body="A warm loyalty experience with clear benefits."
+      title="Simple membership."
+      body="Clear value. Strong loyalty."
       logo={media.membershipLogo}
       buttonLabel="Join +"
       buttonVariant="primary"
@@ -192,7 +192,7 @@ export function MenuSection() {
       id="menu"
       badge="Menu"
       title="One menu. Every store."
-      body="Fresh, consistent, and easy to run."
+      body="Fresh and consistent."
       logo={media.logoPrimary}
       buttonLabel="View menu +"
       buttonVariant="primary"
@@ -210,11 +210,11 @@ export function MenuSection() {
         <div className="content-card__mini-grid" aria-label="Menu priorities">
           <div className="content-card__mini">
             <span>Quality</span>
-            <strong>Consistent taste and clean execution.</strong>
+            <strong>Consistent taste.</strong>
           </div>
           <div className="content-card__mini">
             <span>Seasonal</span>
-            <strong>Small updates that keep it fresh.</strong>
+            <strong>Fresh updates.</strong>
           </div>
         </div>
       </div>
@@ -227,8 +227,8 @@ export function RewardsSection() {
     <ContentSection
       id="rewards-program"
       badge="Rewards Program"
-      title="Rewards that bring guests back."
-      body="Simple, clear, and built for repeat visits."
+      title="Rewards that retain guests."
+      body="Simple. Clear. Effective."
       logo={media.logoPrimary}
       buttonLabel="Join +"
       buttonVariant="primary"
@@ -261,7 +261,7 @@ export function FooterSection() {
                 <img src={media.logoPrimary} alt="" aria-hidden="true" />
               </a>
               <p>
-                Clear brand. Calm presentation. Built to feel trustworthy and refined.
+                Clear brand. Clean presence.
                 <br />
                 <span className="footer__motto">{brandMotto}</span>
               </p>
@@ -287,9 +287,9 @@ export function FooterSection() {
 
             <div className="footer__info">
               <span className="footer__label">Contact</span>
-              <p>For franchise and brand inquiries, start with the rewards page.</p>
+              <p>For inquiries, start here.</p>
               <Button href="/rewards" variant="ghost" className="footer__link">
-                Open rewards program
+                Open rewards
               </Button>
             </div>
           </div>

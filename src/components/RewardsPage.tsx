@@ -2,6 +2,7 @@ import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
 import { brandMotto, media } from '../data/pageContent';
 import type { ReactNode } from 'react';
+import { FooterSection } from './sections';
 
 const joinUrl = 'https://pub2.pskt.io/t/fkbdcn';
 const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(joinUrl)}`;
@@ -80,9 +81,6 @@ function JoinCard() {
               </Button>
             </div>
 
-            <div className="rewards-qr__fineprint">
-              Tip: If the QR doesn’t load, try again on mobile.
-            </div>
           </Panel>
         </div>
       </Container>
@@ -172,6 +170,7 @@ export default function RewardsPage() {
       <RewardsHeader />
       <JoinCard />
       <RewardsSchedule />
+      <FooterSection />
     </main>
   );
 }

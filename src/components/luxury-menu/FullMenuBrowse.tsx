@@ -47,7 +47,7 @@ function PriceFigure({ amount, size = 'md' }: { amount: number; size?: 'md' | 'l
 }
 
 const pricePillShell =
-  'rounded-xl bg-neutral-50/90 px-3 py-3 text-center transition-colors duration-300 ease-out group-hover:bg-neutral-100/95 motion-reduce:transition-none';
+  'bg-white px-3 py-3 text-center transition-colors duration-300 ease-out group-hover:bg-white motion-reduce:transition-none';
 
 function PricePill({
   tier,
@@ -126,18 +126,19 @@ function MenuItemCard({ item }: { item: MenuLineItem }) {
 
   return (
     <article
-      className="menu-browse-item group mx-auto flex h-full w-full max-w-[350px] flex-col overflow-hidden rounded-2xl bg-white shadow-[0_18px_44px_-26px_rgba(0,0,0,0.16),0_8px_22px_-16px_rgba(0,0,0,0.08)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_54px_-24px_rgba(0,0,0,0.14)] motion-reduce:transition-none"
+      className="menu-browse-item group mx-auto flex h-full w-full max-w-[350px] flex-col overflow-hidden bg-white transition-[transform] duration-300 ease-out hover:-translate-y-0.5 motion-reduce:transition-none"
       data-menu-item
     >
-      <div className="relative w-full shrink-0 overflow-hidden bg-neutral-50/40">
+      <div className="relative w-full shrink-0 overflow-hidden bg-white">
         <div className="relative h-[220px] w-full sm:h-[235px]">
           <img
             src={src}
             alt={item.name}
-            className={`h-full w-full object-contain object-center transition-transform duration-500 ease-premium group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
+            className={`h-full w-full object-contain object-center mix-blend-multiply transition-transform duration-500 ease-premium group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
               isChocolateFreeze ? 'p-6 sm:p-7' : isCloserFreeze ? 'p-2 sm:p-3' : 'p-3 sm:p-4'
             }`}
-            loading="lazy"
+            loading="eager"
+            decoding="async"
           />
         </div>
       </div>
@@ -164,7 +165,7 @@ function MenuItemCard({ item }: { item: MenuLineItem }) {
           {tiers.length > 0 ? (
             <PriceTierGrid tiers={tiers} />
           ) : (
-            <div className="flex min-h-[4.4rem] items-center justify-center rounded-xl bg-neutral-50/90 py-4">
+            <div className="flex min-h-[4.4rem] items-center justify-center bg-white py-4">
               {fallbackPrice != null ? (
                 <PriceFigure amount={fallbackPrice} size="lg" />
               ) : (
@@ -182,12 +183,23 @@ function MenuItemCard({ item }: { item: MenuLineItem }) {
 
 function SectionBlock({ section }: { section: MenuSubsection }) {
   const cover = section.image ?? getSectionCover(section.id);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  const scrollCards = (direction: 'left' | 'right') => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const step = Math.max(scroller.clientWidth * 0.82, 280);
+    scroller.scrollBy({
+      left: direction === 'right' ? step : -step,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <section className="scroll-mt-28" id={`section-${section.id}`} aria-labelledby={`heading-${section.id}`}>
       <header className="menu-section-header mb-8 flex items-start gap-4 sm:mb-10 sm:items-center sm:gap-5">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-neutral-100 shadow-md ring-2 ring-white sm:h-[4.75rem] sm:w-[4.75rem]">
-          <img src={cover} alt="" className="h-full w-full object-cover" />
+        <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-transparent sm:h-[4.75rem] sm:w-[4.75rem]">
+          <img src={cover} alt="" className="h-full w-full object-contain mix-blend-multiply" />
         </div>
         <div className="min-w-0 flex-1 border-b border-neutral-200/90 pb-5 sm:pb-6">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -207,10 +219,39 @@ function SectionBlock({ section }: { section: MenuSubsection }) {
         </div>
       </header>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-5 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:gap-6 xl:gap-7">
-        {section.items.map((item) => (
-          <MenuItemCard key={item.id} item={item} />
-        ))}
+      <div className="group relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white via-white/92 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white via-white/92 to-transparent" />
+
+        <div
+          ref={scrollerRef}
+          className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-3 pt-1 sm:gap-5 sm:px-0"
+        >
+          {section.items.map((item) => (
+            <div key={item.id} className="w-[84%] max-w-[350px] shrink-0 snap-start sm:w-[48%] lg:w-[32%] xl:w-[29%]">
+              <MenuItemCard item={item} />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-5 flex items-center justify-center gap-3 sm:mt-6">
+          <button
+            type="button"
+            onClick={() => scrollCards('left')}
+            className="min-w-[122px] rounded-full border border-neutral-200/90 bg-white/95 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-600 shadow-[0_8px_24px_-16px_rgba(0,0,0,0.2)] transition hover:border-neutral-300 hover:bg-white hover:text-neutral-900"
+            aria-label={`Scroll ${section.title} cards left`}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollCards('right')}
+            className="min-w-[122px] rounded-full border border-neutral-900/10 bg-neutral-900 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_10px_28px_-14px_rgba(0,0,0,0.32)] transition hover:bg-neutral-800"
+            aria-label={`Scroll ${section.title} cards right`}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -281,6 +322,7 @@ export function FullMenuBrowse() {
 
   const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const belowFoldRef = useRef<HTMLDivElement>(null);
 
   const setMain = (id: MainMenuTabId) => {
     setMainTab(id);
@@ -288,6 +330,14 @@ export function FullMenuBrowse() {
     setDessertFilter(DESSERT_SUBFILTER_ALL);
     setFoodFilter(FOOD_SUBFILTER_ALL);
     setHealthyFilter(HEALTHY_SUBFILTER_ALL);
+  };
+
+  const handleMainTabSelect = (id: MainMenuTabId) => {
+    setMain(id);
+    belowFoldRef.current?.scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
   };
 
   const visibleSections: MenuSubsection[] = useMemo(() => {
@@ -439,9 +489,9 @@ export function FullMenuBrowse() {
         </p>
       </header>
 
-      <MainHubCards active={mainTab} onSelect={setMain} reduceMotion={reduceMotion} />
+      <MainHubCards active={mainTab} onSelect={handleMainTabSelect} reduceMotion={reduceMotion} />
 
-      <div className="menu-browse-below-fold mt-12 border-t border-neutral-200/80 pt-10 sm:mt-14 sm:pt-12">
+      <div ref={belowFoldRef} className="menu-browse-below-fold mt-12 border-t border-neutral-200/80 pt-10 sm:mt-14 sm:pt-12">
         <div key={mainTab} ref={panelRef} className="menu-tab-panel">
           {mainTab === 'drinks' ? (
             <div className="mb-10">

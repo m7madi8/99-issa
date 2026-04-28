@@ -11,30 +11,30 @@ export const brandMotto = "IT'S MORE THEN A NUMBER" as const;
 export const featureCards = [
   {
     eyebrow: 'Franchise model',
-    title: 'Proven model. Same standard. Every store.',
-    body: 'One brand, one standard, and a clear operating model.',
+    title: 'Proven model. One standard.',
+    body: 'Simple and repeatable.',
   },
   {
     eyebrow: 'Operations',
-    title: 'Operations that scale with you.',
-    body: 'Supply chain, recipes, and day-to-day flow are built to grow.',
+    title: 'Operations that scale.',
+    body: 'Built for growth.',
   },
   {
     eyebrow: 'Revenue drivers',
     title: 'Revenue drivers built in.',
-    body: 'Membership, upsell, and repeat visits are designed in.',
+    body: 'Membership and repeat visits.',
   },
   {
     eyebrow: 'Launch',
-    title: 'Site, build, launch. We’ve done it.',
-    body: 'You get a clear path to open and a map of where it’s going next.',
+    title: 'Site, build, launch.',
+    body: 'Clear path to open.',
   },
 ] as const;
 
 export const storyPoints = [
-  'Membership made simple and rewarding.',
-  'Predictable traffic and stronger unit economics.',
-  'A premium experience that keeps guests coming back.',
+  'Simple and rewarding.',
+  'Predictable traffic.',
+  'Guests come back.',
 ] as const;
 
 export const menuAdditions = [

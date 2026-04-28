@@ -1,6 +1,7 @@
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
 import { brandMotto, media } from '../data/pageContent';
+import { FooterSection } from './sections';
 
 const membershipBenefits = [
   {
@@ -103,6 +104,7 @@ export default function MembershipPage() {
     <main className="app-shell page-route page-route--membership" id="top">
       <MembershipHeader />
       <MembershipBenefits />
+      <FooterSection />
     </main>
   );
 }

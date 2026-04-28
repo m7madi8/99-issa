@@ -195,7 +195,7 @@ export function MenuFilterRail({ options, value, onChange, mainTab, reduceMotion
                   <img
                     src={src}
                     alt=""
-                    className="max-h-full max-w-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    className="max-h-full max-w-full object-contain object-center mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     loading="lazy"
                   />
                 </div>
