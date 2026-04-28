@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import './registerMenuGsap';
 import { gsap, ScrollTrigger } from './registerMenuGsap';
-import { brandMotto } from '../../data/pageContent';
+import { brandMotto, media } from '../../data/pageContent';
 
 /** Place `homee.jpg` in `public/img/` (served as `/img/homee.jpg`). */
 const HERO_IMAGE = '/img/homee.jpg';
@@ -103,9 +103,15 @@ export function LuxuryMenuHero({ reduceMotion }: LuxuryMenuHeroProps) {
       >
         <p
           ref={eyebrowRef}
-          className="mb-3 font-inter text-[11px] font-semibold uppercase tracking-[0.35em] text-white/80"
+          className="mb-3 flex items-center gap-2.5 font-inter text-[11px] font-semibold uppercase tracking-[0.3em] text-white/80"
         >
-          <span className="text-brand">99</span> Cafe · Menu
+          <img
+            src={media.cafeMark}
+            alt="99 Cafe"
+            className="h-5 w-auto object-contain brightness-0 invert"
+          />
+          <span aria-hidden="true">·</span>
+          <span>Menu</span>
         </p>
 
         <h1
