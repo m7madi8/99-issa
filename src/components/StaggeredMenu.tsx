@@ -106,7 +106,15 @@ export default function StaggeredMenu({
     gsap.set(trigger, { color: menuButtonColor });
 
     if (overlay) gsap.to(overlay, { autoAlpha: 1, duration: 0.22, ease: 'power2.out' });
-    gsap.to(panel, { xPercent: 0, duration: 0.82, ease: 'power4.out' });
+    gsap.to(panel, {
+      xPercent: 0,
+      x: 0,
+      duration: 0.82,
+      ease: 'power4.out',
+      onComplete: () => {
+        gsap.set(panel, { x: 0, xPercent: 0 });
+      },
+    });
     gsap.to(icon, { rotate: 225, duration: 0.8, ease: 'power4.out' });
     gsap.to(trigger, {
       color: changeMenuColorOnOpen ? openMenuButtonColor : menuButtonColor,
@@ -177,24 +185,23 @@ export default function StaggeredMenu({
     const body = document.body;
     const html = document.documentElement;
     const previousBodyOverflow = body.style.overflow;
-    const previousBodyPaddingRight = body.style.paddingRight;
     const previousHtmlOverflow = html.style.overflow;
-    const scrollbarWidth = window.innerWidth - html.clientWidth;
+    const previousHtmlScrollbarGutter = html.style.scrollbarGutter;
 
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
+    /* يمنع شريطاً فارغاً بجانب اللوحة الثابتة عندما يكون html يستخدم scrollbar-gutter: stable */
+    html.style.scrollbarGutter = 'auto';
 
     // If Lenis smooth scrolling is active, pause it to prevent background scroll.
     // (Lenis keeps updating via RAF, so overflow hidden alone may not fully stop motion.)
     (window as any).__lenisStop?.();
-    if (scrollbarWidth > 0) {
-      body.style.paddingRight = `${scrollbarWidth}px`;
-    }
+    /* لا نستخدم padding-right على body مع اللوحة full-screen: يسبب شريطاً أبيضاً بجانب position:fixed */
 
     return () => {
       body.style.overflow = previousBodyOverflow;
-      body.style.paddingRight = previousBodyPaddingRight;
       html.style.overflow = previousHtmlOverflow;
+      html.style.scrollbarGutter = previousHtmlScrollbarGutter;
 
       (window as any).__lenisStart?.();
     };

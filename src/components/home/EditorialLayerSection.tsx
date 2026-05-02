@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
-import { useEffect, useLayoutEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -72,6 +72,7 @@ function usePointerTilt3D(enabled: boolean) {
 export function EditorialLayerSection({ id, entrySide, layerIndex, children }: EditorialLayerSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const settledRef = useRef(false);
+  const [stageAlive, setStageAlive] = useState(false);
   const reducedMotion = useReducedMotion();
 
   const tiltEnabled = !reducedMotion;
@@ -149,6 +150,7 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
   const handlePanelEnterComplete = () => {
     if (settledRef.current) return;
     settledRef.current = true;
+    setStageAlive(true);
     if (!reducedMotion) {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
@@ -198,7 +200,7 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
       {...enterMotion}
       onAnimationComplete={reducedMotion ? undefined : handlePanelEnterComplete}
     >
-      <div className="editorial-layer__stage">
+      <div className="editorial-layer__stage" data-editorial-stage={stageAlive ? 'ready' : 'entering'}>
         <motion.div
           className="editorial-layer__tilt"
           style={{

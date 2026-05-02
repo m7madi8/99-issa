@@ -2,6 +2,7 @@ export const media = {
   logoPrimary: '/img/99logo.png',
   logoSecondary: '/img/99logo2.png',
   cafeMark: '/img/99cafe-logo2.png',
+  cafeMarkHover: '/img/99cafe_logo.png',
   heroVideo: '/img/99video.mp4',
   membershipLogo: '/img/1.png',
 } as const;

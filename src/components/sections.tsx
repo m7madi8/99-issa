@@ -146,8 +146,16 @@ export function HeroSection() {
           </p>
 
           <div className="hero__actions">
-            <Button href="/franchise" variant="primary">
-              Apply to own a <span className="brand-red-number">99</span>
+            <Button href="/franchise" variant="primary" aria-label="Apply to own a 99 Cafe franchise">
+              <span className="hero-cta-labelText">Apply to own a</span>
+              <span className="hero-cta-brandmark" aria-hidden="true">
+                <img className="hero-cta-brandmark__img hero-cta-brandmark__img--rest" src={media.cafeMark} alt="" />
+                <img
+                  className="hero-cta-brandmark__img hero-cta-brandmark__img--hover"
+                  src={media.cafeMarkHover}
+                  alt=""
+                />
+              </span>
             </Button>
             <Button href="/membership" variant="secondary">
               Learn more
