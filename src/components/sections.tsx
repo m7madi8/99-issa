@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Badge, Button, Container, Panel } from './ui';
 import ScrollReveal from './ScrollReveal';
 import StaggeredMenu from './StaggeredMenu';
+import { EditorialLayerSection } from './home/EditorialLayerSection';
 import { brandMotto, featureCards, media, menuAdditions, storyPoints } from '../data/pageContent';
 
 function ContentSection({
@@ -17,6 +18,8 @@ function ContentSection({
   buttonClassName = '',
   children,
   meta,
+  entrySide,
+  layerIndex,
 }: {
   id: string;
   badge: string;
@@ -30,12 +33,14 @@ function ContentSection({
   buttonClassName?: string;
   children?: ReactNode;
   meta?: string;
+  entrySide: 'left' | 'right';
+  layerIndex: number;
 }) {
   return (
-    <section className={`${id}-section editorial-section`} id={id}>
+    <EditorialLayerSection id={id} entrySide={entrySide} layerIndex={layerIndex}>
       <Container>
         <div className="editorial-section__layout">
-          <div className="editorial-section__copy">
+          <div className="editorial-section__copy editorial-section__copy-plane">
             <div className="editorial-section__head">
               <Badge tone={badgeTone}>{badge}</Badge>
               {meta ? <span className="editorial-section__meta">{meta}</span> : null}
@@ -55,12 +60,14 @@ function ContentSection({
             </Button>
           </div>
 
-          <ScrollReveal as="div" enableBlur={false} baseOpacity={0.4} baseRotation={0.6} scrub={1.45} containerClassName="editorial-section__mark">
-            <img src={logo} alt="" aria-hidden="true" />
-          </ScrollReveal>
+          <div className="editorial-section__mark-plane">
+            <ScrollReveal as="div" enableBlur={false} baseOpacity={0.4} baseRotation={0.6} scrub={1.45} containerClassName="editorial-section__mark">
+              <img src={logo} alt="" aria-hidden="true" />
+            </ScrollReveal>
+          </div>
         </div>
       </Container>
-    </section>
+    </EditorialLayerSection>
   );
 }
 
@@ -137,6 +144,8 @@ export function FranchiseSection() {
   return (
     <ContentSection
       id="franchise"
+      entrySide="right"
+      layerIndex={0}
       badge="Franchise"
       title="Built to scale."
       body="Clear model. Clean execution."
@@ -164,6 +173,8 @@ export function MembershipSection() {
   return (
     <ContentSection
       id="membership"
+      entrySide="left"
+      layerIndex={1}
       badge="Membership"
       title="Simple membership."
       body="Clear value. Strong loyalty."
@@ -190,6 +201,8 @@ export function MenuSection() {
   return (
     <ContentSection
       id="menu"
+      entrySide="right"
+      layerIndex={2}
       badge="Menu"
       title="One menu. Every store."
       body="Fresh and consistent."
@@ -226,6 +239,8 @@ export function RewardsSection() {
   return (
     <ContentSection
       id="rewards-program"
+      entrySide="left"
+      layerIndex={3}
       badge="Rewards Program"
       title="Rewards that retain guests."
       body="Simple. Clear. Effective."

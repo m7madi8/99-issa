@@ -145,6 +145,16 @@ button {
   overflow: visible;
 }
 
+/* طبقات الهوم ثلاثية الأبعاد: لا تقصّ الحواف خارج clip */
+.app-shell.app-home {
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+#root:has(.app-shell.app-home) {
+  overflow-x: visible;
+}
+
 .app-home {
   padding-top: 100dvh;
 }
@@ -628,11 +638,126 @@ button {
   border-top: 1px solid rgba(17, 17, 17, 0.06);
 }
 
+/* Home editorial: perspective أقوى = إحساس عمق حقيقي */
+.app-home {
+  perspective: 960px;
+  perspective-origin: 50% 38%;
+}
+
+.app-home .editorial-layer {
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  border: 1px solid rgba(17, 17, 17, 0.055);
+  background: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.98) inset,
+    0 44px 88px -24px rgba(17, 17, 17, 0.09),
+    0 18px 36px -14px rgba(17, 17, 17, 0.045);
+}
+
+.app-home .editorial-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    transparent 38%,
+    transparent 62%,
+    rgba(17, 17, 17, 0.03) 100%
+  );
+  opacity: 0.85;
+  z-index: 1;
+}
+
+.app-home .editorial-layer__stage {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+/* طبقات Z منفصلة: النص أقرب من الخلفية، الشعار يبرز للأمام */
+.app-home .editorial-section__copy-plane {
+  transform: translate3d(0, 0, 52px);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.app-home .editorial-section__mark-plane {
+  transform: translate3d(0, 0, 118px);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.app-home .editorial-layer__tilt {
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 899px) {
+  .app-home {
+    perspective: 1200px;
+  }
+
+  .app-home .editorial-section__copy-plane {
+    transform: translate3d(0, 0, 24px);
+  }
+
+  .app-home .editorial-section__mark-plane {
+    transform: translate3d(0, 0, 48px);
+  }
+}
+
+@keyframes editorial-layer-stage-breathe {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0.35deg);
+  }
+
+  50% {
+    transform: translate3d(0, -6px, 0) rotateX(-0.28deg);
+  }
+}
+
+.app-home .editorial-layer__stage--alive {
+  animation: editorial-layer-stage-breathe 6.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-home .editorial-layer__stage--alive {
+    animation: none;
+    will-change: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .app-home .editorial-layer + .editorial-layer {
+    margin-top: -1.35rem;
+    border-radius: 26px 26px 0 0;
+  }
+
+  .app-home .editorial-layer {
+    border-radius: 26px;
+  }
+}
+
+.app-home .footer-section {
+  position: relative;
+  z-index: 10;
+}
+
 .editorial-section__layout {
   display: grid;
   gap: 2rem;
   padding-top: 1.75rem;
   border-top: 1px solid rgba(17, 17, 17, 0.06);
+  transform-style: preserve-3d;
 }
 
 .editorial-section__copy {
@@ -1182,7 +1307,8 @@ button {
     padding-top: 2rem;
   }
 
-  .editorial-section__mark {
+  .editorial-section__mark,
+  .editorial-section__mark-plane {
     justify-self: end;
   }
 
