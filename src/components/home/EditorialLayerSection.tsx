@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,9 +19,11 @@ type EditorialLayerSectionProps = {
 function usePointerTilt3D(enabled: boolean) {
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const springConfig = { stiffness: 88, damping: 22, mass: 0.45 };
+  const springConfig = { stiffness: 90, damping: 28, mass: 0.42 };
   const smoothRotateX = useSpring(rotateX, springConfig);
   const smoothRotateY = useSpring(rotateY, springConfig);
+  const tiltRaf = useRef<number | null>(null);
+  const tiltLatest = useRef({ px: 0, py: 0 });
 
   useEffect(() => {
     if (!enabled) {
@@ -29,6 +31,16 @@ function usePointerTilt3D(enabled: boolean) {
       rotateY.set(0);
     }
   }, [enabled, rotateX, rotateY]);
+
+  useEffect(
+    () => () => {
+      if (tiltRaf.current != null) {
+        cancelAnimationFrame(tiltRaf.current);
+        tiltRaf.current = null;
+      }
+    },
+    [],
+  );
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!enabled) return;
@@ -39,8 +51,14 @@ function usePointerTilt3D(enabled: boolean) {
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
 
-    rotateX.set(-py * 20);
-    rotateY.set(px * 24);
+    tiltLatest.current = { px, py };
+    if (tiltRaf.current != null) return;
+    tiltRaf.current = requestAnimationFrame(() => {
+      tiltRaf.current = null;
+      const { px: npx, py: npy } = tiltLatest.current;
+      rotateX.set(-npy * 20);
+      rotateY.set(npx * 24);
+    });
   };
 
   const handlePointerLeave = () => {
@@ -54,10 +72,9 @@ function usePointerTilt3D(enabled: boolean) {
 export function EditorialLayerSection({ id, entrySide, layerIndex, children }: EditorialLayerSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const settledRef = useRef(false);
-  const [stageAlive, setStageAlive] = useState(false);
   const reducedMotion = useReducedMotion();
 
-  const tiltEnabled = stageAlive && !reducedMotion;
+  const tiltEnabled = !reducedMotion;
   const { smoothRotateX, smoothRotateY, handlePointerMove, handlePointerLeave } = usePointerTilt3D(tiltEnabled);
 
   const travelX = useMemo(() => {
@@ -92,7 +109,7 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
     const tilt = entrySide === 'right' ? -7 : 7;
 
     const ctx = gsap.context(() => {
-      gsap.set(targets, { willChange: 'transform, opacity', force3D: true, transformOrigin: '50% 92%' });
+      gsap.set(targets, { willChange: 'transform, opacity', transformOrigin: '50% 92%' });
 
       gsap.fromTo(
         targets,
@@ -101,14 +118,12 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
           opacity: 0,
           rotateX: 14,
           rotationY: tilt,
-          z: -52,
         },
         {
           y: 0,
           opacity: 1,
           rotateX: 0,
           rotationY: 0,
-          z: 0,
           duration: 0.95,
           stagger: {
             each: 0.056,
@@ -135,7 +150,6 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
     if (settledRef.current) return;
     settledRef.current = true;
     if (!reducedMotion) {
-      setStageAlive(true);
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
       });
@@ -184,9 +198,7 @@ export function EditorialLayerSection({ id, entrySide, layerIndex, children }: E
       {...enterMotion}
       onAnimationComplete={reducedMotion ? undefined : handlePanelEnterComplete}
     >
-      <div
-        className={`editorial-layer__stage${stageAlive && !reducedMotion ? ' editorial-layer__stage--alive' : ''}`}
-      >
+      <div className="editorial-layer__stage">
         <motion.div
           className="editorial-layer__tilt"
           style={{

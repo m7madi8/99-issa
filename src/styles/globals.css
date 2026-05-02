@@ -713,29 +713,6 @@ button {
   }
 }
 
-@keyframes editorial-layer-stage-breathe {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotateX(0.35deg);
-  }
-
-  50% {
-    transform: translate3d(0, -6px, 0) rotateX(-0.28deg);
-  }
-}
-
-.app-home .editorial-layer__stage--alive {
-  animation: editorial-layer-stage-breathe 6.8s ease-in-out infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .app-home .editorial-layer__stage--alive {
-    animation: none;
-    will-change: auto;
-  }
-}
-
 @media (min-width: 900px) {
   .app-home .editorial-layer + .editorial-layer {
     margin-top: -1.35rem;

@@ -1,0 +1,35 @@
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0)
+    env(safe-area-inset-left, 0);
+  background: var(--bg, #fafafa);
+  pointer-events: auto;
+}
+
+.app-loader__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.85rem);
+}
+
+/* نفس خط / وزن / تتبع الهيرو؛ لون الشعار الأحمر كـ .hero .hero__motto */
+.app-loader .app-loader__motto.hero__motto {
+  margin: 0;
+  text-align: center;
+  color: #e11d2e;
+  text-shadow: 0 12px 28px rgba(225, 29, 46, 0.18);
+}
+
+.app-loader__logo {
+  display: block;
+  width: clamp(9.5rem, 32vw, 15.5rem);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 32px rgba(17, 17, 17, 0.07));
+}

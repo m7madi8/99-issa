@@ -45,13 +45,37 @@ function ContentSection({
               <Badge tone={badgeTone}>{badge}</Badge>
               {meta ? <span className="editorial-section__meta">{meta}</span> : null}
             </div>
-            <ScrollReveal as="h2" baseOpacity={0.28} baseRotation={0.8} blurStrength={2} scrub={1.45} containerClassName="editorial-section__reveal">
+            <ScrollReveal
+              as="h2"
+              enableBlur={false}
+              baseOpacity={0.28}
+              baseRotation={0.8}
+              blurStrength={2}
+              scrub={0.55}
+              containerClassName="editorial-section__reveal"
+            >
               {title}
             </ScrollReveal>
-            <ScrollReveal as="p" baseOpacity={0.32} baseRotation={0.6} blurStrength={1.5} scrub={1.45} containerClassName="editorial-section__reveal">
+            <ScrollReveal
+              as="p"
+              enableBlur={false}
+              baseOpacity={0.32}
+              baseRotation={0.6}
+              blurStrength={1.5}
+              scrub={0.55}
+              containerClassName="editorial-section__reveal"
+            >
               {body}
             </ScrollReveal>
-            <ScrollReveal as="p" baseOpacity={0.22} baseRotation={0.2} blurStrength={0.7} scrub={1.15} containerClassName="brand-motto__reveal">
+            <ScrollReveal
+              as="p"
+              enableBlur={false}
+              baseOpacity={0.22}
+              baseRotation={0.2}
+              blurStrength={0.7}
+              scrub={0.45}
+              containerClassName="brand-motto__reveal"
+            >
               {brandMotto}
             </ScrollReveal>
             {children}
@@ -61,7 +85,7 @@ function ContentSection({
           </div>
 
           <div className="editorial-section__mark-plane">
-            <ScrollReveal as="div" enableBlur={false} baseOpacity={0.4} baseRotation={0.6} scrub={1.45} containerClassName="editorial-section__mark">
+            <ScrollReveal as="div" enableBlur={false} baseOpacity={0.4} baseRotation={0.6} scrub={0.55} containerClassName="editorial-section__mark">
               <img src={logo} alt="" aria-hidden="true" />
             </ScrollReveal>
           </div>

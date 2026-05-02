@@ -22,11 +22,12 @@ export function useLenisScroll() {
     }
 
     const lenis = new Lenis({
-      duration: 1.38,
+      /** أقرب للتمرير الأصلي = أقل تباطؤاً مع الحفاظ على نعومة خفيفة */
+      duration: 1.05,
       easing: createLenisScrollEase(),
-      lerp: 0.072,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.12,
+      lerp: 0.12,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
       smoothWheel: true,
     } as never);
 
