@@ -847,16 +847,16 @@ button {
 
 .home-scroll-line {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100dvh + clamp(-1rem, -2vw, -0.35rem));
+  top: calc(100dvh + clamp(-0.25rem, -0.8vw, -0.05rem));
+  left: -12%;
+  right: -12%;
   bottom: 0;
-  width: 100%;
+  width: auto;
   height: auto;
   pointer-events: none;
   z-index: 11;
   will-change: transform;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .home-scroll-line svg {
@@ -867,21 +867,13 @@ button {
 .home-scroll-line__main {
   fill: none;
   stroke: #d52134;
-  stroke-width: clamp(9px, 1.45vw, 14px);
+  stroke-width: clamp(6px, 1.9vw, 10px);
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.7;
+  opacity: 0.58;
 }
 
 @media (max-width: 899px) {
-  .home-scroll-line {
-    top: calc(100dvh + clamp(-0.25rem, -0.8vw, -0.05rem));
-    left: -12%;
-    right: -12%;
-    width: auto;
-    overflow: hidden;
-  }
-
   .home-scroll-line__main {
     stroke-width: clamp(6px, 1.9vw, 10px);
     opacity: 0.58;
