@@ -163,11 +163,13 @@ button {
 }
 
 .app-home {
+  position: relative;
   padding-top: 100dvh;
+  overflow-x: clip;
 }
 
 .app-home .hero {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -709,6 +711,7 @@ button {
   z-index: 1;
   padding: clamp(3.25rem, 6vw, 5.5rem) 0;
   background: #ffffff;
+  overflow: hidden;
 }
 
 .editorial-section.franchise-section,
@@ -727,12 +730,13 @@ button {
 
 /* Home editorial: perspective أقوى = إحساس عمق حقيقي */
 .app-home {
-  perspective: 960px;
-  perspective-origin: 50% 38%;
+  perspective: none !important;
+  perspective-origin: initial;
 }
 
 .app-home .editorial-layer {
-  position: relative;
+  position: sticky;
+  top: 0;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   isolation: isolate;
@@ -787,8 +791,23 @@ button {
 }
 
 @media (max-width: 899px) {
+  .app-home .editorial-section > .container {
+    width: 100%;
+  }
+
+  .app-home .editorial-layer,
+  .app-home .content-card,
+  .app-home .content-card__detail,
+  .app-home .content-card__story-item,
+  .app-home .content-card__metric,
+  .app-home .content-card__mini,
+  .app-home .content-card .button,
+  .app-home .content-card .hero-ui-button {
+    border-radius: 0;
+  }
+
   .app-home {
-    perspective: 1200px;
+    perspective: none !important;
   }
 
   .app-home .editorial-section__copy-plane {
@@ -822,6 +841,51 @@ button {
   padding-top: 1.75rem;
   border-top: 1px solid rgba(17, 17, 17, 0.06);
   transform-style: preserve-3d;
+  position: relative;
+  z-index: 2;
+}
+
+.home-scroll-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100dvh + clamp(-1rem, -2vw, -0.35rem));
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 11;
+  will-change: transform;
+  overflow: visible;
+}
+
+.home-scroll-line svg {
+  width: 100%;
+  height: 100%;
+}
+
+.home-scroll-line__main {
+  fill: none;
+  stroke: #d52134;
+  stroke-width: clamp(9px, 1.45vw, 14px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}
+
+@media (max-width: 899px) {
+  .home-scroll-line {
+    top: calc(100dvh + clamp(-0.25rem, -0.8vw, -0.05rem));
+    left: -12%;
+    right: -12%;
+    width: auto;
+    overflow: hidden;
+  }
+
+  .home-scroll-line__main {
+    stroke-width: clamp(6px, 1.9vw, 10px);
+    opacity: 0.58;
+  }
 }
 
 .editorial-section__copy {

@@ -10,6 +10,7 @@ import FranchisePage from './components/FranchisePage';
 import MembershipPage from './components/MembershipPage';
 import RewardsPage from './components/RewardsPage';
 import MenuPage from './منيو/MenuPage';
+import { HomeScrollLine } from './components/home/HomeScrollLine';
 
 const getPathname = () => decodeURI(window.location.pathname.replace(/\/$/, ''));
 
@@ -37,6 +38,7 @@ export default function App() {
   return (
     <main className="app-shell app-home" id="top">
       <HeroSection />
+      <HomeScrollLine />
       <FranchiseSection />
       <MembershipSection />
       <MenuSection />
